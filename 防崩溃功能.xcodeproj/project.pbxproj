@@ -31,6 +31,8 @@
 		213B1DB624F7A2E200EFCC27 /* NSDictionary+SafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 213B1DB524F7A2E200EFCC27 /* NSDictionary+SafeDictionary.m */; };
 		213B1DB924F7A63F00EFCC27 /* NSMutableArray+SafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 213B1DB824F7A63F00EFCC27 /* NSMutableArray+SafeArray.m */; };
 		213B1DBD24F89D1200EFCC27 /* NSObject+KVO.m in Sources */ = {isa = PBXBuildFile; fileRef = 213B1DBC24F89D1200EFCC27 /* NSObject+KVO.m */; };
+		215CFC712513B0F1005F50FB /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 215CFC702513B0F1005F50FB /* Person.m */; };
+		215CFC742513B181005F50FB /* KVOTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 215CFC732513B181005F50FB /* KVOTestViewController.m */; };
 		21DCA27C250B551C00A49680 /* CustomProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DCA27B250B551C00A49680 /* CustomProxy.m */; };
 		21DCA27F250B6B8F00A49680 /* NSMutableDictionary+SafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DCA27E250B6B8F00A49680 /* NSMutableDictionary+SafeDictionary.m */; };
 		21DCA283250C531200A49680 /* NSTimer+SafeTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 21DCA282250C531200A49680 /* NSTimer+SafeTimer.m */; };
@@ -103,6 +105,10 @@
 		213B1DB824F7A63F00EFCC27 /* NSMutableArray+SafeArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+SafeArray.m"; sourceTree = "<group>"; };
 		213B1DBB24F89D1200EFCC27 /* NSObject+KVO.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+KVO.h"; sourceTree = "<group>"; };
 		213B1DBC24F89D1200EFCC27 /* NSObject+KVO.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+KVO.m"; sourceTree = "<group>"; };
+		215CFC6F2513B0F1005F50FB /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		215CFC702513B0F1005F50FB /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		215CFC722513B181005F50FB /* KVOTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVOTestViewController.h; sourceTree = "<group>"; };
+		215CFC732513B181005F50FB /* KVOTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVOTestViewController.m; sourceTree = "<group>"; };
 		21C269AE24E62AF40044EB79 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		21DCA27A250B551C00A49680 /* CustomProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomProxy.h; sourceTree = "<group>"; };
 		21DCA27B250B551C00A49680 /* CustomProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomProxy.m; sourceTree = "<group>"; };
@@ -180,6 +186,8 @@
 				2114B4E424C17DE0000C6E4B /* ViewController.h */,
 				2114B4E524C17DE0000C6E4B /* ViewController.m */,
 				21DCA284250C59A400A49680 /* TimerTestViewController.h */,
+				215CFC722513B181005F50FB /* KVOTestViewController.h */,
+				215CFC732513B181005F50FB /* KVOTestViewController.m */,
 				21DCA285250C59A400A49680 /* TimerTestViewController.m */,
 				2114B4E724C17DE0000C6E4B /* Main.storyboard */,
 				2114B4EA24C17DE2000C6E4B /* Assets.xcassets */,
@@ -269,6 +277,8 @@
 			children = (
 				2114B52C24C17E98000C6E4B /* TestObject.h */,
 				2114B52B24C17E97000C6E4B /* TestObject.m */,
+				215CFC6F2513B0F1005F50FB /* Person.h */,
+				215CFC702513B0F1005F50FB /* Person.m */,
 			);
 			path = helper;
 			sourceTree = "<group>";
@@ -467,11 +477,13 @@
 				21DCA27F250B6B8F00A49680 /* NSMutableDictionary+SafeDictionary.m in Sources */,
 				2114B52A24C17E79000C6E4B /* GetHardwareInfoObject.m in Sources */,
 				2114B4E624C17DE0000C6E4B /* ViewController.m in Sources */,
+				215CFC742513B181005F50FB /* KVOTestViewController.m in Sources */,
 				2114B4E024C17DE0000C6E4B /* AppDelegate.m in Sources */,
 				21DCA27C250B551C00A49680 /* CustomProxy.m in Sources */,
 				2114B51A24C17E1E000C6E4B /* NSObject+Hook.m in Sources */,
 				2129E32C24EBF4DC00904266 /* NSNullSafeObject.m in Sources */,
 				2114B52424C17E41000C6E4B /* TkimCustomAlert.m in Sources */,
+				215CFC712513B0F1005F50FB /* Person.m in Sources */,
 				213B1DB624F7A2E200EFCC27 /* NSDictionary+SafeDictionary.m in Sources */,
 				213B1DBD24F89D1200EFCC27 /* NSObject+KVO.m in Sources */,
 				2114B52524C17E41000C6E4B /* TkimCustomAlertMnager.m in Sources */,

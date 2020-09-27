@@ -11,7 +11,10 @@
 
 #import "MessageInfoHelper.h"
 #import <objc/runtime.h>
-
+/**
+ addobserver 时候创建 proxy 实际上observer
+ 
+ */
 static void(*__hook_orgin_function_removeObserver)(NSObject* self, SEL _cmd ,NSObject *observer ,NSString *keyPath) = ((void*)0);
 @interface KVOProxy : NSObject{
     __unsafe_unretained NSObject *_observed;
@@ -43,10 +46,11 @@ static void(*__hook_orgin_function_removeObserver)(NSObject* self, SEL _cmd ,NSO
         @try {
             [observer observeValueForKeyPath:keyPath ofObject:object change:change context:context];
         } @catch (NSException *exception) {
-            [MessageInfoHelper alertWithTitle:@"kvo"];
+            [MessageInfoHelper alertWithTitle:@"观察者已消失"];
         }
     }
 }
+// 添加的时候，add的是一个中间层
 - (void)dealloc {
     @autoreleasepool {
         NSDictionary<NSString *, NSHashTable<NSObject *> *> *kvoinfos =  self.kvoInfoMap.copy;
@@ -60,7 +64,7 @@ static void(*__hook_orgin_function_removeObserver)(NSObject* self, SEL _cmd ,NSO
 
 @end
 
-@interface  NSObject (KVO)
+@interface  NSObject ()
 /**<#标注#>*/
 @property (nonatomic,strong) KVOProxy *kvoProxy;
 @end
@@ -73,9 +77,10 @@ static void(*__hook_orgin_function_removeObserver)(NSObject* self, SEL _cmd ,NSO
 }
 + (void)hy_KVOProtectorSwizzleMethod
 {
-    
+    hy_swizzleInstanceMethodImplementation([self class], @selector(addObserver:forKeyPath:options:context:), @selector(safe_addObserver:forKeyPath:options:context:));
+    hy_swizzleInstanceMethodImplementation([self class], @selector(removeObserver:forKeyPath:), @selector(safe_removeObserver:forKeyPath:));
 
-    /**保留函数指针，给外部调用*/
+    /**保留函数指针，给delloc时候调用*/
     __hook_orgin_function_removeObserver = (void *)class_getMethodImplementation([self class],     @selector(safe_removeObserver:forKeyPath:));
 }
 
@@ -87,6 +92,9 @@ static void(*__hook_orgin_function_removeObserver)(NSObject* self, SEL _cmd ,NSO
 - (KVOProxy *)kvoProxy {
     return objc_getAssociatedObject(self, @selector(kvoProxy));
 }
+
+
+
 - (void)safe_addObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options context:(void *)context {
     
     
@@ -107,11 +115,14 @@ static void(*__hook_orgin_function_removeObserver)(NSObject* self, SEL _cmd ,NSO
        [self safe_addObserver:self.kvoProxy forKeyPath:keyPath options:options context:context];
        self.kvoProxy.kvoInfoMap[keyPath] = os;
        return ;
+   }else{
+        [os addObject:observer];
    }
 
    
  
 }
+
 - (void)safe_removeObserver:(NSObject *)observer forKeyPath:(NSString *)keyPath {
     NSHashTable<NSObject *> *os = self.kvoProxy.kvoInfoMap[keyPath];
        
@@ -124,10 +135,14 @@ static void(*__hook_orgin_function_removeObserver)(NSObject* self, SEL _cmd ,NSO
        [os removeObject:observer];
        
        if (os.count == 0) {
-           [self safe_removeObserver:observer forKeyPath:keyPath];
+           [self safe_removeObserver:self.kvoProxy forKeyPath:keyPath];
            
            [self.kvoProxy.kvoInfoMap removeObjectForKey:keyPath];
        }
+    
+    
+    
+    
     
 }
 

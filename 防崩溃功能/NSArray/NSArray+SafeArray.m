@@ -8,7 +8,6 @@
 
 #import "NSArray+SafeArray.h"
 #import "NSObject+Hook.h"
-
 #import "MessageInfoHelper.h"
 @implementation NSArray (SafeArray)
 +(void)load

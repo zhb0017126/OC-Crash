@@ -7,10 +7,12 @@
 //
 
 #import "ViewController.h"
-#import <dlfcn.h>
+
 #import "TestObject.h"
 #import "CustomProxy.h"
 #import "TimerTestViewController.h"
+#import "KVOTestViewController.h"
+#import <dlfcn.h>
 @interface ViewController ()<UIDocumentPickerDelegate, UIDocumentInteractionControllerDelegate,UITableViewDelegate,UITableViewDataSource>
 /**<#标注#>*/
 @property (nonatomic,strong) UITableView *tabelView;
@@ -106,6 +108,8 @@
         [dic setValue:obj forKey:@"keyString"];
     }else if ([string isEqualToString:@"NSTimer"]){
         [self.navigationController pushViewController:[TimerTestViewController new] animated:YES];
+    }else if ([string isEqualToString:@"KVO"]){
+         [self.navigationController pushViewController:[KVOTestViewController new] animated:YES];
     }
         
 
